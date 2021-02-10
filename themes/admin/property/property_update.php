@@ -55,20 +55,25 @@
                                 </div>
                                 <div class="col-md-12">
                                     <label>*Locador:</label>
-                                    <select class="form-control select2bs4" name="lessor">
-                                      <?php if($property->lessor==""):?>
-                                        <option value="">--Selecione--</option>
-                                      <?php endif;?>
-                                        <?php foreach($lessors as $lessor):?>
-                                               <option <?php if($lessor->id==$property->lessor): ?>selected<?php endif;?> value="<?=$lessor->id;?>"><?=$lessor->name;?></option>
-                                        <?php endforeach;?>
-                                    </select>
+                                    <?php if($property->lessor==""):?>
+                                        <select class="form-control select2bs4" name="lessor">
+                                          <?php if($property->lessor==""):?>
+                                            <option value="">--Selecione--</option>
+                                          <?php endif;?>
+                                            <?php foreach($lessors as $lessor):?>
+                                                   <option value="<?=$lessor->id;?>"><?=$lessor->name;?></option>
+                                            <?php endforeach;?>
+                                        </select>
+                                    <?php else: echo $property->lessorProperty()->name;?>
+                                    <?php endif;?>
                                 </div>
                             </div>
                         </div><!-- /.card-body -->
-                        <div class="card-footer">
-                            <button class="btn btn-success"><i class="fas fa-edit"> Alterar</i></button>
-                        </div><!-- /.card-footer -->
+                         <?php if($property->lessor==""):?>
+                            <div class="card-footer">
+                                <button class="btn btn-success"><i class="fas fa-edit"> Alterar</i></button>
+                            </div><!-- /.card-footer -->
+                         <?php endif;?>
                     </form><!-- /.form -->
                 </div><!-- /.card -->
             </div><!-- /.container-fluid -->

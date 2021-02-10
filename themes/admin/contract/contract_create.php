@@ -39,9 +39,15 @@
                                     </select>
                                 </div> 
                                 <div class="col-md-6">
-                                    <label>Locador:</label>
-                                    <div id="value_lessor"></div>
-                                    <input type="hidden" name="lessor" />
+                                    <label>*Locador:</label>
+                                        <select class="form-control select2bs4" name="lessor" id="lessor" required>
+                                          <?php if($property->lessor==""):?>
+                                            <option value="">--Selecione--</option>
+                                          <?php endif;?>
+                                            <?php foreach($lessors as $lessor):?>
+                                                   <option value="<?=$lessor->id;?>"><?=$lessor->name;?></option>
+                                            <?php endforeach;?>
+                                        </select>
                                 </div>
                                 <div class="col-md-12">
                                     <label>*Locatário:</label>

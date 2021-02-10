@@ -90,14 +90,14 @@ $(function () {
     
    $('#property').change(function () {
         var property = $(this).val();
-        document.getElementById("value_lessor").innerHTML = "";
+        $('#lessor').val("");
+        $('#lessor').trigger('change');
         if(property!=""){
             $.getJSON( path + '/contract/getOwner/'+property, function (data){
 
                 $.each(data.owner, function(i, obj){
-
-                    document.getElementById("value_lessor").innerHTML += obj.name ;
-                     $("[name=lessor]").val(obj.id);
+                   $('#lessor').val(obj.id);
+                   $('#lessor').trigger('change');
                 });
 
             });
@@ -110,3 +110,4 @@ function gerarData(str) {
     var partes = str.split("/");
     return new Date(partes[2], partes[1] - 1, partes[0]);
 }
+

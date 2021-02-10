@@ -112,6 +112,10 @@ class ContractController extends Controller  {
                     return;
                 }
                 
+                $property_update = (new Property)->findById($data->property);
+                $property_update->lessor =$data->lessor;
+                $property_update->save();
+                
                 $lessor_day = (new Lessor())->findById($data->lessor);
                 
                 for($i=1;$i<=$diff_month;$i++){
@@ -165,8 +169,10 @@ class ContractController extends Controller  {
     
         $lessees = (new Lessee())->find("id not in(select lessee from contracts where status='active')")->fetch(true);
         
-        $properties = (new Property)->find("id not in(select property from contracts where status='active') and lessor!=''")->fetch(true);
-                
+        $properties = (new Property)->find("id not in(select property from contracts where status='active')")->fetch(true);
+        
+        $lessors = (new Lessor)->find()->fetch(true);
+        
         $head = $this->seo->render(
             CONF_SITE_NAME . " | Contrato Cadastrar",
             CONF_SITE_DESC,
@@ -179,7 +185,8 @@ class ContractController extends Controller  {
             "head" => $head,
             "menu" => "contract",
             "lessees" => $lessees,
-            "properties" => $properties
+            "properties" => $properties,
+            "lessors" => $lessors
         ]);
     }
     
