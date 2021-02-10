@@ -165,7 +165,7 @@ class ContractController extends Controller  {
     
         $lessees = (new Lessee())->find("id not in(select lessee from contracts where status='active')")->fetch(true);
         
-        $properties = (new Property)->find("id not in(select property from contracts where status='active')")->fetch(true);
+        $properties = (new Property)->find("id not in(select property from contracts where status='active') and lessor!=''")->fetch(true);
                 
         $head = $this->seo->render(
             CONF_SITE_NAME . " | Contrato Cadastrar",

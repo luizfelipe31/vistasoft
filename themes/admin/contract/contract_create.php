@@ -34,7 +34,7 @@
                                     <select class="form-control select2bs4" name="property" id="property" required>
                                       <option value="">--Selecione--</option>
                                         <?php foreach($properties as $property):?>
-                                               <option value="<?=$property->id;?>"><?=$property->street." ".$property->number." ".$property->complement." ".$property->district.",".$property->state.",".$property->city." - ".$property->zipcode;?></option>
+                                               <option value="<?=$property->id;?>"><?=$property->street." ".$property->number." ".$property->complement." ".$property->district.",".$property->state.",".$property->city;?></option>
                                         <?php endforeach;?>
                                     </select>
                                 </div> 

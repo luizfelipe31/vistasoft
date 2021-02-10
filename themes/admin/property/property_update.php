@@ -29,38 +29,36 @@
                             <input type="hidden" name="action" value="update"/>
                             <?= csrf_input(); ?>
                             <div class="row">
-                                <div class="col-md-4">
-                                  <label>*CEP:</label>
-                                  <input class="form-control mask-cep" type="text" name="zipcode" id="zipcode" value="<?= $property->zipcode; ?>" placeholder="Digite o CEP" />
-                                </div>
-                                <div class="col-md-8">
+                                <div class="col-md-12">
                                   <label>*Logradouro:</label>
-                                  <input class="form-control" type="text" name="street" id="street" value="<?= $property->street; ?>" placeholder="Logradouro" />
+                                  <?= $property->street; ?>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-12">
                                   <label>*Número:</label>
-                                  <input class="form-control" type="text" name="number" value="<?= $property->number ?>" placeholder="Número" />
+                                  <?= $property->number ?>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-12">
                                   <label>Complemento:</label>
-                                  <input class="form-control" type="text" name="complement" value="<?= $property->complement ?>" placeholder="Complemento" />
+                                  <?= $property->complement ?>
                                 </div>
                                 <div class="col-md-12">
                                   <label>*Bairro:</label>
-                                  <input class="form-control" type="text" name="district" id="district" value="<?= $property->district ?>" placeholder="Bairro" />
+                                  <?= $property->district ?>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                   <label>*Estado:</label>
-                                  <input class="form-control" type="text" name="state" id="state" value="<?= $property->state ?>" placeholder="Estado" />
+                                  <?= $property->state ?>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                   <label>*Cidade:</label>
-                                  <input class="form-control" type="text" name="city" id="city" value="<?= $property->city ?>" placeholder="Cidade" />
+                                  <?= $property->city ?>
                                 </div>
                                 <div class="col-md-12">
                                     <label>*Locador:</label>
                                     <select class="form-control select2bs4" name="lessor">
-                                      <option value="">--Selecione--</option>
+                                      <?php if($property->lessor==""):?>
+                                        <option value="">--Selecione--</option>
+                                      <?php endif;?>
                                         <?php foreach($lessors as $lessor):?>
                                                <option <?php if($lessor->id==$property->lessor): ?>selected<?php endif;?> value="<?=$lessor->id;?>"><?=$lessor->name;?></option>
                                         <?php endforeach;?>
@@ -70,13 +68,6 @@
                         </div><!-- /.card-body -->
                         <div class="card-footer">
                             <button class="btn btn-success"><i class="fas fa-edit"> Alterar</i></button>
-                            &nbsp&nbsp
-                            <a href="#" class="btn btn-danger"
-                               data-post="<?= url("/imovel/excluir/{$property->cod}"); ?>"
-                               data-action="delete"
-                               data-confirm="ATENÇÃO: Tem certeza que deseja excluir o imóvel? Essa ação não pode ser desfeita!"
-                               data-cod="<?= $property->cod; ?>"><i class="fas fa-trash"> Excluir </i>
-                            </a>
                         </div><!-- /.card-footer -->
                     </form><!-- /.form -->
                 </div><!-- /.card -->

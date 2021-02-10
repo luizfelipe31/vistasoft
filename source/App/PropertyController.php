@@ -23,11 +23,11 @@ class PropertyController extends Controller {
      */
     public function home(): void{
         
- /*           $dados = array(
-            'fields' => array( 'Cidade', 'Bairro', 'ValorVenda' )
+           $dados = array(
+            'fields' => array( 'Codigo','Endereco','Numero','Complemento','Cidade','UF','Bairro' )
             );
 
-            $key         =  'xc9fdd79584fb8d369a6a579af1a8f681'; //Informe sua chave aqui
+            $key         =  'cb13b18a914bcd7ed384b52f8ee9b5a8'; //Informe sua chave aqui
             $postFields  =  json_encode( $dados );
             $url         =  'http://sandbox-rest.vistahost.com.br/imoveis/listar?key=' . $key;
             $url        .=  '&pesquisa=' . $postFields;
@@ -38,8 +38,26 @@ class PropertyController extends Controller {
             $result = curl_exec( $ch );
 
             $result = json_decode( $result, true );
-            print_r( $result );
-        exit;*/
+
+            foreach($result as $each){
+                $codigo = trim($each["Codigo"]);
+                $property = (new Property())->find("cod=:cod","cod={$codigo}")->count();
+           
+                if($property==0){
+                    
+                    $property_create = new Property();
+                    $property_create->cod = $codigo;
+                    $property_create->street = $each["Endereco"];
+                    $property_create->number = $each["Numero"];
+                    $property_create->complement = $each["Complemento"];
+                    $property_create->district = $each["Bairro"];
+                    $property_create->state = $each["UF"];
+                    $property_create->city = $each["Cidade"]; 
+                    $property_create->save();
+                }
+            }
+       
+
         $properties = (new Property())->find()->fetch(true);
         
         $head = $this->seo->render(
@@ -155,13 +173,6 @@ class PropertyController extends Controller {
 
                 $data = (object)$post;
                 
-                $property->zipcode = $data->zipcode;
-                $property->street = $data->street;
-                $property->number = $data->number;
-                $property->complement = $data->complement;
-                $property->district = $data->district;
-                $property->state = $data->state;
-                $property->city = $data->city;
                 $property->lessor = $data->lessor;
                 
                 if (!$property->save()) {
@@ -170,6 +181,7 @@ class PropertyController extends Controller {
                     return;
                 }
                 
+               
                 $this->message->info("atualizado com sucesso.")->flash();
                 $json["redirect"] = url("/imovel/alterar/{$property->cod}");
 

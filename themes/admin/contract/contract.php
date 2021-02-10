@@ -47,7 +47,7 @@
                     <tbody>
                       <?php foreach ($contracts as $contract): ?>
                         <tr>
-                            <td><?= $contract->returnProperty()->street." ".$contract->returnProperty()->number." ".$contract->returnProperty()->complement." ".$contract->returnProperty()->district.",".$contract->returnProperty()->state.",".$contract->returnProperty()->city." - ".$contract->returnProperty()->zipcode; ?></td>
+                            <td><?= $contract->returnProperty()->street." ".$contract->returnProperty()->number." ".$contract->returnProperty()->complement." ".$contract->returnProperty()->district.",".$contract->returnProperty()->state.",".$contract->returnProperty()->city; ?></td>
                             <td><?= $contract->returnLessor()->name;?></td>
                             <td><?= $contract->returnLessee()->name;?></td>
                             <td><?=date_fmt2($contract->start_date);?></td>

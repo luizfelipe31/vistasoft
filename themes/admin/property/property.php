@@ -24,9 +24,6 @@
     <div class="card card-solid">
         <div class="card-body pb-0">
             <div class="row">
-                <div class="col-md-4">
-                    <a href="<?= $router->route("property.create"); ?>" class="btn btn-primary">Novo Imóvel</a>
-                </div>
                 <div class="col-md-5">
                 </div>
             </div><br>
@@ -44,9 +41,9 @@
                     <tbody>
                       <?php foreach ($properties as $property): ?>
                         <tr>
-                            <td><?= $property->street." ".$property->number." ".$property->complement." ".$property->district.",".$property->state.",".$property->city." - ".$property->zipcode; ?></td>
-                            <td><?= $property->lessorProperty()->name; ?></td>
-                            <td>Não</td>
+                            <td><?= $property->street." ".$property->number." ".$property->complement." ".$property->district.",".$property->state.",".$property->city; ?></td>
+                            <td><?php if($property->lessorProperty()): echo $property->lessorProperty()->name; endif; ?></td>
+                            <td><?php if(count($property->returnContract())!=0): echo "SIM"; else: echo "NÃO"; endif;?></td>
                             <td><a href="<?= url("/imovel/alterar/{$property->cod}"); ?>" class="btn btn-primary"><i class="fas fa-edit">Alterar</i></a></td>
                         </tr>
                       <?php endforeach; ?>

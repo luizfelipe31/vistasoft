@@ -31,7 +31,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label>Imóvel:</label>
-                                       <?=$contract->returnProperty()->street." ".$contract->returnProperty()->number." ".$contract->returnProperty()->complement." ".$contract->returnProperty()->district.",".$contract->returnProperty()->state.",".$contract->returnProperty()->city." - ".$contract->returnProperty()->zipcode;?>
+                                       <?=$contract->returnProperty()->street." ".$contract->returnProperty()->number." ".$contract->returnProperty()->complement." ".$contract->returnProperty()->district.",".$contract->returnProperty()->state.",".$contract->returnProperty()->city;?>
                                 </div> 
                                 <div class="col-md-12">
                                     <label>Locador:</label>
