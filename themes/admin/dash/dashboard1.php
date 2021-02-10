@@ -82,7 +82,28 @@
                 </div>
             </div><!-- /.small boxes -->
             <br>
-            
+             
+            <div class="row mb-2">
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <h3 class="m-0">Financeiro:</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                  <label>Contas a receber:</label>
+                  R$ <?=str_price($transfer_pending);?>
+                </div>
+                <div class="col-md-4">
+                  <label>Repasse(s) pendente(s):</label>
+                  <?=$transfers_pending_count;?>
+                </div>
+                <div class="col-md-4">
+                  <label>Saldo:</label>
+                  R$ <?=str_price($balance);?>
+                </div>
+            </div>
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
