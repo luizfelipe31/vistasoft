@@ -242,11 +242,11 @@ class ContractController extends Controller  {
                 }else{
                     
                     foreach($payments as $payment){
-                       $payment->detroy(); 
+                       $payment->destroy(); 
                     }
                     
                     foreach($transfers as $transfer){
-                       $transfer->detroy(); 
+                       $transfer->destroy(); 
                     }
                 }
                 

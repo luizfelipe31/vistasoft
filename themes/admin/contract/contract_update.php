@@ -49,7 +49,7 @@
                                     <label>Data Fim:</label>
                                     <?=date_fmt2($contract->end_date);?>
                                 </div>
-  
+                              <?php if($contract->status=="active"):?>
                                 <div class="col-md-6">
                                     <label>*Taxa de administração:</label>
                                     <input class="form-control mask-percent" type="text" value="<?=str_price($contract->administration_fee);?>" name="administration_fee" required placeholder="Taxa de administração %" />
@@ -68,16 +68,41 @@
                                 </div>
                                 <div class="col-md-12">
                                     <label>Status:</label>
+                                    
                                     <select class="form-control select2bs4" name="status">
-                                      <option value="active" <?php if($contract->status=="active"): echo "selected"; endif;?> >Ativo</option>
-                                      <option value="closed" <?php if($contract->status=="closed"): echo "selected"; endif;?>>Encerrado</option>
+                                      <option value="active" selected >Ativo</option>
+                                      <option value="closed" >Encerrado</option>
                                     </select>
+                                   
                                 </div>
+                               <?php else:?>
+                                <div class="col-md-6">
+                                    <label>*Taxa de administração:</label>
+                                    <?=str_price($contract->administration_fee);?>
+                                </div>
+                                <div class="col-md-6">
+                                   <label>*Aluguel:</label>
+                                   <?=str_price($contract->rent);?>
+                                </div>
+                                <div class="col-md-6">
+                                   <label>Condomínio:</label>
+                                   <?=str_price($contract->condominium);?>
+                                </div>
+                                <div class="col-md-6">
+                                   <label>*IPTU:</label>
+                                   <?=str_price($contract->iptu);?>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Status:</label>Encerrado
+                                </div>
+                               <?php endif;?>
                             </div>
                         </div><!-- /.card-body -->
+                        <?php if($contract->status=="active"):?>
                         <div class="card-footer">
                             <button class="btn btn-success"><i class="fas fa-edit"> Alterar</i></button>
                         </div><!-- /.card-footer -->
+                        <?php endif;?>
                     </form><!-- /.form -->
                 </div><!-- /.card -->
             </div><!-- /.container-fluid -->
