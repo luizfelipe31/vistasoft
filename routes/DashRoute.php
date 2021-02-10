@@ -40,8 +40,10 @@ $router->get("/contract/getOwner/{property}", "ContractController:getOwner", "co
 
 /**payment**/
 $router->get("/mensalidade", "FinanceController:payment", "payment.home");
+$router->get("/mensalidade/{page}", "FinanceController:payment","payment.payment");
 $router->post("/mensalidade/confirm/{cod}", "FinanceController:confirmPayment", "finance.confirmPayment");
 
 /**transfer**/
 $router->get("/repasse", "FinanceController:transfer", "transfer.home");
+$router->get("/repasse/{page}", "FinanceController:transfer","transfer.home");
 $router->post("/repasse/confirm/{cod}", "FinanceController:confirmTransfer", "finance.confirmTransfer");

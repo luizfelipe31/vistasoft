@@ -25,7 +25,7 @@
         <div class="card-body pb-0">
                 <?php
                 if($transfers):?>
-                <table id="example1" class="display" >
+                <table id="example2" class="display" >
                     <thead>
                         <tr>
                             <th>Locador</th>
@@ -78,6 +78,7 @@
                         <td></td>
                     </tfoot>
                 </table>
+              <?= $paginator; ?>
              <?php endif;?>
         </div><!-- /.card-body pb-0 -->
     </div><!-- /.card card-solid -->

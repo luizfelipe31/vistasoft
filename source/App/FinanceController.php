@@ -9,10 +9,9 @@
 namespace Source\App;
 
 use Source\Core\Controller;
-use Source\Models\Contract;
 use Source\Models\Payment;
 use Source\Models\Transfer;
-
+use Source\Support\Pager;
 /**
  * Description of Finance
  *
@@ -28,10 +27,14 @@ class FinanceController extends Controller  {
     * 
     * @return void
     */
-    public function payment(): void{
+    public function payment(?array $data): void{
         
-        $payments = (new Payment())->find()->fetch(true);
+        $payments = (new Payment())->find();
         
+        $pager = new Pager(url("/mensalidade/"));
+        $pager->pager($payments->count(), 10, (!empty($data["page"]) ? $data["page"] : 1));
+        
+       
         $head = $this->seo->render(
             CONF_SITE_NAME . " | Mensalidade",
             CONF_SITE_DESC,
@@ -43,7 +46,8 @@ class FinanceController extends Controller  {
         echo $this->view->render("finance/payment", [
             "head" => $head,
             "menu" => "payment",
-            "payments" => $payments
+            "payments" => $payments->limit($pager->limit())->offset($pager->offset())->fetch(true),
+            "paginator" => $pager->render()
         ]);
         
     }
@@ -84,9 +88,12 @@ class FinanceController extends Controller  {
     * 
     * @return void
     */
-    public function transfer(): void{
+    public function transfer(?array $data): void{
         
-        $transfers = (new Transfer())->find()->fetch(true);
+        $transfers = (new Transfer())->find();
+        
+        $pager = new Pager(url("/repasse/"));
+        $pager->pager($transfers->count(), 10, (!empty($data["page"]) ? $data["page"] : 1));
         
         $head = $this->seo->render(
             CONF_SITE_NAME . " | Contrato",
@@ -99,7 +106,8 @@ class FinanceController extends Controller  {
         echo $this->view->render("finance/transfer", [
             "head" => $head,
             "menu" => "transfer",
-            "transfers" => $transfers
+            "transfers" => $transfers->limit($pager->limit())->offset($pager->offset())->fetch(true),
+            "paginator" => $pager->render()
         ]);
         
     }

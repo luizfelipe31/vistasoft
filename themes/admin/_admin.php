@@ -362,7 +362,13 @@ var table = $('#example1').DataTable({
 });
 
 
-
+var table = $('#example2').DataTable({
+    "ordering": true,
+    "paging": false,
+    "info": true,
+    "lengthChange": false,
+    responsive: true
+});
 
 $(function () {
 //Initialize Select2 Elements
