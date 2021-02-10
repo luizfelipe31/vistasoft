@@ -96,7 +96,7 @@ class FinanceController extends Controller  {
         $pager->pager($transfers->count(), 10, (!empty($data["page"]) ? $data["page"] : 1));
         
         $head = $this->seo->render(
-            CONF_SITE_NAME . " | Contrato",
+            CONF_SITE_NAME . " | Repasse",
             CONF_SITE_DESC,
             url("/"),
             theme("assets/images/image.jpg", CONF_VIEW_THEME_ADMIN),
