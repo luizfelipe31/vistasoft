@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 10-Fev-2021 às 03:28
+-- Tempo de geração: 10-Fev-2021 às 16:00
 -- Versão do servidor: 10.4.17-MariaDB
 -- versão do PHP: 7.4.14
 
@@ -72,7 +72,7 @@ CREATE TABLE `lessees` (
 --
 
 INSERT INTO `lessees` (`id`, `cod`, `name`, `email`, `cel`, `created_at`, `updated_at`) VALUES
-(3, 0x33363137373038322d366163642d313165622d623638622d313464616539623837343434, 'Irandir Azevedo', 'irandir@gmail.com', '(22)99999-9999', '2021-02-09 09:51:58', '2021-02-09 09:51:58');
+(3, 0x33363137373038322d366163642d313165622d623638622d313464616539623837343434, 'Isabel Azevedo', 'isabel@gmail.com', '(22)99999-9999', '2021-02-09 09:51:58', '2021-02-10 13:56:01');
 
 -- --------------------------------------------------------
 
@@ -145,15 +145,15 @@ INSERT INTO `payments` (`id`, `cod`, `contract`, `lessee`, `rent`, `condominium`
 
 CREATE TABLE `properties` (
   `id` int(11) NOT NULL,
-  `cod` binary(36) NOT NULL DEFAULT uuid(),
-  `zipcode` varchar(20) NOT NULL,
+  `cod` varchar(100) NOT NULL DEFAULT '',
+  `zipcode` varchar(20) DEFAULT NULL,
   `street` varchar(100) NOT NULL,
   `number` varchar(50) NOT NULL,
   `complement` varchar(50) DEFAULT NULL,
   `district` varchar(50) NOT NULL,
   `state` varchar(50) NOT NULL,
   `city` varchar(50) NOT NULL,
-  `lessor` int(11) NOT NULL,
+  `lessor` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -163,7 +163,17 @@ CREATE TABLE `properties` (
 --
 
 INSERT INTO `properties` (`id`, `cod`, `zipcode`, `street`, `number`, `complement`, `district`, `state`, `city`, `lessor`, `created_at`, `updated_at`) VALUES
-(2, 0x32313336313761312d366163642d313165622d623638622d313464616539623837343434, '20730-400', 'Rua Dionísio Fernandes', '297', 'apto 406 bloco 1', 'Engenho de Dentro', 'RJ', 'Rio de Janeiro', 2, '2021-02-09 09:51:23', '2021-02-09 09:51:23');
+(2, '213617a1-6acd-11eb-b68b-14dae9b87444', '20730-400', 'Rua Dionísio Fernandes', '297', 'apto 406 bloco 1', 'Engenho de Dentro', 'RJ', 'Rio de Janeiro', 2, '2021-02-10 14:22:36', '2021-02-10 14:22:36'),
+(93, '3152', NULL, 'Arnoldo Cândido Raulino', '3455', '', 'Canto', 'SC', 'Balneario Camboriu', NULL, '2021-02-10 13:25:35', '2021-02-10 13:25:35'),
+(94, '3153', NULL, 'Arnoldo Cândido Raulino', '555', '', 'Canto', 'SC', 'Alvorada', NULL, '2021-02-10 13:25:35', '2021-02-10 13:25:35'),
+(95, '2448', NULL, 'Arruda Alvim', '501', 'Ap 05', 'Vila Leolpoldina', 'SP', 'Sao Paulo', NULL, '2021-02-10 13:25:35', '2021-02-10 13:25:35'),
+(96, '3141', NULL, 'Nova Cantareira', '3600', 'qw324', 'Tristeza', 'SP', 'São Paulo', NULL, '2021-02-10 13:25:35', '2021-02-10 13:25:35'),
+(97, '3151', NULL, 'Arnoldo Cândido Raulino', '34', '', 'Canto', 'SC', 'Balneario Camboriu', 2, '2021-02-10 13:25:35', '2021-02-10 13:55:15'),
+(98, '25', NULL, 'Esmeralda', '146', '702', 'Abraão', 'sp', 'Sao Paulo', NULL, '2021-02-10 13:25:35', '2021-02-10 13:25:35'),
+(99, '38', NULL, 'Robertson', '123', 'AP 21', 'Camaqua', 'SP', 'Sao Paulo', NULL, '2021-02-10 13:25:35', '2021-02-10 13:25:35'),
+(100, '3378', NULL, 'Venezuela', '333', '', 'Itinga', 'SC', 'Araquari', NULL, '2021-02-10 13:25:35', '2021-02-10 13:25:35'),
+(101, '42', NULL, 'Quintino Bocaiuva', '3870', 'APTO 901 BOX 2526 E 27', 'Rincao', 'RS', 'Porto Alegre', NULL, '2021-02-10 13:25:35', '2021-02-10 13:25:35'),
+(102, '54', NULL, 'Pires Da Mota', '80', '91', 'Abraão', 'RJ', 'Rio De Janeiro', NULL, '2021-02-10 13:25:35', '2021-02-10 13:25:35');
 
 -- --------------------------------------------------------
 
@@ -306,7 +316,7 @@ ALTER TABLE `payments`
 -- AUTO_INCREMENT de tabela `properties`
 --
 ALTER TABLE `properties`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT de tabela `transfers`
