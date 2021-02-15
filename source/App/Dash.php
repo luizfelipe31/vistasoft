@@ -47,12 +47,16 @@ class Dash extends Admin {
         $transfers2 = (new Transfer())->find("status=0")->fetch(true);
         $transfers_pending_count = (new Transfer())->find("status = 0 and payment in (select id from payments where status=1)")->count();
         
-        foreach($transfers as $transfer){
-           $transfer_balance+=$transfer->value;
+        if($transfers){
+            foreach($transfers as $transfer){
+               $transfer_balance+=$transfer->value;
+            }
         }
 
-        foreach($transfers2 as $transfer2){
-           $transfer_pending+=$transfer2->value;
+        if($transfers2){
+            foreach($transfers2 as $transfer2){
+               $transfer_pending+=$transfer2->value;
+            }
         }
         
         $head = $this->seo->render(
